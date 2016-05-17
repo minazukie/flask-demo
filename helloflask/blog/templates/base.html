@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+      <head>
+        {% if title %}
+        <title>{{title}} - Sandwinds</title>
+        {% else %}
+        <title>Sandwinds</title>
+        {% endif %}
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="theme-color" content="#EE6E73">
+      <link type="text/css" rel="stylesheet" href="../static/css/materialize.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="../static/css/prism.css" />
+      <link type="text/css" rel="stylesheet" href="../static/iconfont/material-icons.css" />
+      </head>
+        <script type="text/javascript" src="../static/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="../static/js/materialize.min.js"></script>
+        <script type="text/javascript" src="../static/js/fan.js"></script>
+      <style>
+              .parallax-container {
+      height: 300px;
+                 }
+                  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+
+      </style>
+      <body style="background-color:#e0e0e0">
+<header>
+<div class="navbar-fixed">
+<nav>
+    <div class="nav-wrapper">
+        <div class="container">
+      <a href="/index" class="brand-logo">Sandwinds</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li id="blog"><a href="/index">BLOG</a></li>
+        <li id="about"><a href="/about">ABOUT</a></li>
+        {% if 'username' in session %}
+        <li id="useradmin"><a href="JAVASCRIPT:$('#enteradmin').submit()" >{{ session['username'] }}</a></li>
+        <li id="logout"><a href="JAVASCRIPT:logout()" >LOGOUT</a></li>
+            <form method="post" action="signout" id="logoutform"></form>
+            <form action="/admin" method="post" id="enteradmin"></form>
+          {% else %}
+          <li id="#modal1"><a href="#modal1"  class="modal-trigger">LOGIN</a></li>
+          {% endif %}
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li id="blog"><a href="/index">BLOG</a></li>
+        <li id="about"><a href="/about">ABOUT</a></li>
+         {% if 'username' in session %}
+        <li id="useradmin"><a href="JAVASCRIPT:$('#enteradmin').submit()" >{{ session['username'] }}</a></li>
+        <li id="logout"><a href="JAVASCRIPT:logout()" >LOGOUT</a></li>
+            <form method="post" action="signout" id="logoutform"></form>
+            <form action="/admin" method="post" id="enteradmin"></form>
+          {% else %}
+          <li id="#modal1"><a href="#modal1"  class="modal-trigger">LOGIN</a></li>
+          {% endif %}
+      </ul>
+            </div>
+    </div>
+  </nav>
+</div>
+</header>
+<div class="fixed-action-btn " style="bottom: 45px; right: 24px;">
+    <a class="waves-effect btn-floating btn-large red ">
+      <i class="large material-icons">loyalty</i>
+    </a>
+    <ul>
+      <li><a class="waves-effect btn-floating red" href="/index">Blog</a></li>
+      <li><a class="waves-effect btn-floating blue darken-1" href="/about">About</a></li>
+    </ul>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>LOGIN</h4>
+        <div class="row">
+            <form action="/admin" method="post" id="loginform"></form>
+    <div class="input-field col s10 m5">
+        <i class="material-icons prefix">account_circle</i>
+          <input id="username" type="text" class="validate" name="username">
+          <label for="username">用户名</label>
+        </div>
+    <div class="input-field col s10 m5">
+        <i class="material-icons prefix">https</i>
+          <input id="password" type="password" class="validate" name="password">
+          <label for="password">密码</label>
+        </div>
+
+        <p>
+      <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+      <label for="filled-in-box">记住我</label>
+    </p></div><label style="font-size: 16px;font-weight: bold" class="red-text" id="loginmsg">&nbsp;</label>
+    </div>
+      <div class="progress" id="bar">
+    <div class="determinate" style="width: 0%"></div>
+  </div>
+      <div class="progress" id="load">
+      <div class="indeterminate"></div>
+  </div>
+    <div class="modal-footer">
+      <a onclick="login()" class="modal-action  waves-effect waves-green btn-flat ">Login</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+    </div>
+  </div>
+<!-- Modal Structure END -->
+
+<main>
+        {% block content %}{% endblock %}
+</main>
+ <footer  class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">DESIGNED BY wlFan</h5>
+                <p class="grey-text text-lighten-4">SERVERED BY NGINX1.8 </p>
+                <p class="grey-text text-lighten-4">POWERED BY QCloud </p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">CONTACT ME</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3"  target="_blank" href="http://weibo.com/5259616802/profile">WEIBO</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © COPYRIGHT BY SANDWINDS 2016
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+
+
+  <script>
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+        $('.modal-trigger').leanModal();
+        $('#load').hide();
+    });
+
+</script>
+      </body>
+    </html>
