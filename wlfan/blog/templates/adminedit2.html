@@ -1,0 +1,53 @@
+{% extends "base2.html" %}
+{% block content %}
+{% for info in infos %}
+<div class="ui main container">
+    <div class="ui grid stackable">
+        <div class="sixteen wide left floated column">
+            <div class="ui   stacked  segment">
+                <h1>新建博文</h1>
+                <div class="ui form">
+                    <div class="two fields">
+                        <input id="editid" type="hidden" value="{{ info.b_id }}">
+                        <div class="field" style="width: 100%">
+                            <label>标题</label>
+                            <input placeholder="请输入标题" type="text" id="edittitle" value="{{ info.b_title }}" required>
+                        </div>
+                        <div class="field">
+                            <label>标签</label>
+                            <input placeholder="请输入标签" type="text" id="edittag" value="{{ info.b_tag }}" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>预览部分</label>
+                        <div id="pretext" style="height: 300px">
+                            {% autoescape false %}{{ info.b_pre }}{% endautoescape %}</div>
+                    </div>
+                    <div class="field">
+                        <label>正文部分</label>
+                        <div id="maintext" style="height: 600px">
+                            {% autoescape false %}{{ info.b_text }}{% endautoescape %}</div>
+                    </div>
+                </div>
+                <br/>
+                <div class="ui button blue right floated" id="blogedit" onclick="blogedit()">编辑</div>
+                <br/><br/>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../static/js/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var pretext = new wangEditor('pretext');
+    var maintext = new wangEditor('maintext');
+    pretext.config.menuFixed = false;
+    maintext.config.menuFixed = false;
+    pretext.create();
+    maintext.create();
+    $('#btn1').click(function () {
+        var html = pretext.$txt.html();
+        alert(html);
+    })
+</script>
+{% endfor %}
+{% endblock %}

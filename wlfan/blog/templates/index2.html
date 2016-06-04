@@ -1,0 +1,70 @@
+{% extends "base2.html" %}
+{% block content %}
+
+{% for post in posts %}
+<div class="ui one link stackable cards ">
+    <div class="ui card">
+        <div class="content" onclick="document.location='/detail/{{ post.b_id }}';"><a
+                class="ui blue ribbon label">{{ post.b_tag }}</a>
+            <div class="header" style="font-size: 30px">
+                <center>{{ post.b_title }}</center>
+            </div>
+            <div class="meta">
+                <span class="category"><center><i class="calendar icon"></i>{{ post.b_date }}</center></span>
+            </div>
+            <div class="description" style="font-size: 16px">
+                {% autoescape false %}
+                {{ post.b_pre }}
+                {% endautoescape %}
+            </div>
+        </div>
+        <div class="extra content">
+            <div class=" author">
+                {% if 'username' in session %}
+                    {% if session['username'] == "羽崎水无月" %}
+                        <div class="ui button black " onclick="document.location='/adminedit/{{ post.b_id }}';">编辑</div>
+                    {% endif %}
+                {% endif %}
+                <div class="ui button blue right floated" onclick="document.location='/detail/{{ post.b_id }}';"
+                     style="width: 100px">阅读全文
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<br/>
+{% if user == "noindex" %}
+    <span></span>
+{% else %}
+    <center>
+        <div class="ui borderless pagination menu">
+            {% if page== 1 %}
+                <a class="icon item disabled"><i class="left arrow icon"></i></a>
+            {% else %}
+                <a class="icon item" href="/?page={{ page-1 }}"><i class="left arrow icon"></i></a>
+            {% endif %}
+            {% for c in range(count) %}
+                {% if page== c+1 %}
+                    <a class="active item" href="#!">{{ c+1 }}</a>
+                {% else %}
+                    <a class=" item" href="?page={{ c+1 }}">{{ c+1 }} </a>
+                {% endif %}
+            {% endfor %}
+            {% if page== count %}
+                <a class="icon item disabled"><i class="right arrow icon"></i></a>
+            {% else %}
+                <a class="icon item" href="?page={{ page+1 }}"><i class="right arrow icon"></i></a>
+            {% endif %}
+        </div>
+    </center>
+{% endif %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".blog").addClass("active");
+        $(document).attr("title", "Senkaze");
+    });
+
+
+</script>
+{% endblock %}

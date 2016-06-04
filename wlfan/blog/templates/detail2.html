@@ -1,0 +1,103 @@
+{% extends "base2.html" %}
+{% block content %}
+{% if posts %}
+{% for post in posts %}
+<div class="ui main container">
+    <div class="ui grid stackable">
+        <div class="sixteen wide left floated column">
+            <div class="ui   stacked  segment"><a class="ui blue ribbon label">{{ post.b_tag }}</a>
+                <br/> <br/>
+                <script>
+                    $(document).ready(function () {
+                        $(document).attr("title", "{{ post.b_title }} | Senkaze");
+                    });
+                </script>
+                <span style="font-size: 24px;font-weight: bold">{{ post.b_title }}</span><br/>
+                <i class="calendar icon"></i><span class="category">{{ post.b_date }}</span>
+                <br><br>
+                {% autoescape false %}
+                <div id="dtext" style="overflow:auto;word-break: break-all"> {{ post.b_text }}</div>
+                {% endautoescape %}
+                {% endfor %}
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="ui grid stackable">
+        <div class="sixteen wide left floated column">
+            <div class="ui  stacked segment">
+
+                <div class="ui comments">
+                    <h1 class="ui dividing header">评论</h1>
+                    {% if comms %}
+                        {% for comm in comms %}
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="../static/img/ic.jpg">
+                                </a>
+                                <div class="content">
+                                    <a class="author">{{ comm.c_name }}</a>
+                                    <div class="metadata">
+                                        <span class="date">{{ comm.c_date }}</span>
+                                    </div>
+                                    <div class="text">
+                                        {{ comm.c_text }}
+                                    </div>
+                                    <div class="actions">
+                                        <a class="reply"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {% endif %}
+                    <form class="ui reply form" method="post" action="/commpost" id="commform">
+                        <input type="hidden" value="{{ b_id }}" name="b_id">
+                        <div class="field">
+                            <label>基本信息</label>
+                            <div class="two fields">
+                                <div class="field">
+                                    <input placeholder="昵称（必填）" id="nickname" type="text" length="12" name="name"
+                                           value="{{ nickname }}" required>
+                                </div>
+                                <div class="field">
+                                    <input placeholder="电子邮件地址（选填）" id="email" type="email" name="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>评论</label>
+                            <div class="fields">
+                                <textarea id="pinglun" class="materialize-textarea" length="500" name="text"
+                                          required></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>验证码</label>
+                            <div class="fields">
+                                <span style="width:20%">{{ session['vah'] }}乘以{{ session['vbh'] }}等于</span>
+                                <input placeholder="验证码" id="vc" type="text" name="vc" required>
+                            </div>
+                        </div>
+                        <div id="send" class="ui blue labeled submit icon button" onclick="commpost()">
+                            <i class="icon edit"></i> 添加回复
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('img').addClass('ui centered rounded image');
+        $('blockquote').addClass('ui inverted');
+
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends "base2.html" %}
+{% block content %}
+    <div class="ui  stacked segment">
+    <a class="ui blue ribbon label">Love You~</a>
+     <center>
+            <p>梦想的道路少不了质疑与嘲笑。</p>
+            <p>水不撩不知深浅，人不拼怎知输赢。</p>
+            <p>你笑我和别人不一样，我笑你和别人都一样。</p>
+            <p>加油吧骚年，一切都在你手中。</p>
+
+     </center><h1>个人标签</h1><br/>
+    <a class="ui black label">Python爱好者</a>
+<a class="ui yellow label">Python3提倡者</a>
+<a class="ui green label">伪技术宅</a>
+<a class="ui blue label">像素爱好者</a>
+<a class="ui orange label">实用主义</a>
+<a class="ui purple label">萌即是正义~</a>
+<a class="ui red label">脑洞略大</a>
+<a class="ui teal label">要安静</a>
+    </div>
+    <div class="ui  stacked segment">
+
+        <center><h1>About Me</h1>
+            </center>
+        <br/>
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th><h3>个人信息</h3></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td><i class="user icon"></i>姓名：都姜帆</td>
+            </tr>
+            <tr>
+                <td><i class="time icon"></i>年龄：20岁</td>
+            </tr>
+            <tr>
+                <td><i class="calendar icon"></i>生日：1996-04-22</td>
+            </tr>
+            <tr>
+                <td><i class="world icon"></i>现住地：青岛</td>
+            </tr>
+            <tr>
+                <td><i class="book icon"></i>学历：本科大二软件工程，在读</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th><h3>联系方式</h3></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td><i class="weibo icon"></i>WEIBO：<a class="" target="_blank"
+                                                       href="http://weibo.com/5259616802/profile">Fananananana</a></td>
+            </tr>
+            <tr>
+                <td><i class="mail icon"></i>EMAIL：qfhy2008@126.COM</td>
+            </tr>
+            <tr>
+                <td><i class="quote left icon"></i>TIEBA：<a class="" target="_blank"
+                                                            href="http://tieba.baidu.com/home/main?id=a548d3f0c6e9cbaeceded4c2b848&fr=userbar">羽崎水无月</a>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="qq icon"></i>QQ：519692479</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th><h3>个人代码库</h3></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td><i class="github icon"></i>GitHub：<a class="" href="#!">本站代码稍后会上传至GitHub，敬请期待！</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th><h3>个人项目</h3></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>个人博客（基于Python3开发，使用Flask框架）：<a href="http://www.wlfan.com/" target="_blank">
+                    http://www.wlfan.com/</a></td>
+            </tr>
+            <tr>
+                <td>希望杯作文大赛（基于Java开发，使用Struts2框架）：<a href="http://www.xwbzwds.com/" target="_blank">
+                    http://www.xwbzwds.com/</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th><h3>已学过的</h3></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>Python 3（Django，Flask（这个网站使用的框架）等Web框架）</td>
+            </tr>
+            <tr>
+                <td>Selenium 2（基于Python 3）自动化测试</td>
+            </tr>
+            <tr>
+                <td>JSP，Java（Struts2，Spring MVC等Web框架）</td>
+            </tr>
+            <tr>
+                <td>Semantic，Bootstrap等前端响应式布局</td>
+            </tr>
+            <tr>
+                <td>JavaScript，jQuery等前端脚本语言</td>
+            </tr>
+            <tr>
+                <td>MySQL</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th><h3>发展方向</h3></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>Web前后端开发</td>
+            </tr>
+            <tr>
+                <td>iOS，Android等移动APP开发</td>
+            </tr>
+            <tr>
+                <td>自动化脚本测试</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th><h3>其他兴趣</h3></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>英语，日语</td>
+            </tr>
+            <tr>
+                <td>国史，日史</td>
+            </tr>
+            <tr>
+                <td>二次元（并不是很狂热的那种）</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".about").addClass("active");
+            $(document).attr("title", "About | Senkaze");
+        });
+    </script>
+{% endblock %}

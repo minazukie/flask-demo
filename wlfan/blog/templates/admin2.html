@@ -1,0 +1,49 @@
+{% extends "base2.html" %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="../static/css/wangEditor.min.css">
+    <div class="ui main container">
+        <div class="ui grid stackable">
+            <div class="sixteen wide left floated column">
+                <div class="ui   stacked  segment">
+                    <h1>新建博文</h1>
+                    <div class="ui form">
+                        <div class="two fields">
+                            <div class="field" style="width: 100%">
+                                <label>标题</label>
+                                <input placeholder="请输入标题" type="text" id="newtitle" required>
+                            </div>
+                            <div class="field">
+                                <label>标签</label>
+                                <input placeholder="请输入标签" type="text" id="newtag" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>预览部分</label>
+                            <div id="pretext" style="height: 300px"></div>
+                        </div>
+                        <div class="field">
+                            <label>正文部分</label>
+                            <div id="maintext" style="height: 600px"></div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="ui button blue right floated" id="blogpost" onclick="blogpost()">提交</div>
+                    <br/><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        var pretext = new wangEditor('pretext');
+        var maintext = new wangEditor('maintext');
+        pretext.config.menuFixed = false;
+        maintext.config.menuFixed = false;
+        pretext.create();
+        maintext.create();
+        $('#btn1').click(function () {
+            var html = pretext.$txt.html();
+            alert(html);
+        })
+    </script>
+{% endblock %}
